@@ -178,3 +178,12 @@ def login():
         flash("Login credentials not correct", category="danger")
 
     return render_template("login.html", title="Movies Watchlist - Login", form=form)
+
+
+@pages.route("/logout")
+def logout():
+    current_theme = session.get("theme")
+    session.clear()
+    session["theme"] = current_theme
+
+    return redirect(url_for(".login"))
